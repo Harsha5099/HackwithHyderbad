@@ -1,0 +1,22 @@
+﻿services:
+  - type: web
+    name: clientpulse-ai
+    env: node
+    plan: free
+    buildCommand: npm --prefix server install && npm --prefix server run build && npm --prefix client install && npm --prefix client run build
+    startCommand: npm --prefix server run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HINDSIGHT_BASE_URL
+        value: https://api.hindsight.vectorize.io
+      - key: HINDSIGHT_BANK_PREFIX
+        value: hok
+      - key: HINDSIGHT_API_KEY
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
